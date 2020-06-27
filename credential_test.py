@@ -31,6 +31,45 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.credential_pass,"wilpass")
 
 
+    def test_save_credential(self):
+        '''
+
+        Test if credential is saved to list
+
+        '''
+        
+        self.new_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list),1)
+
+
+    def test_save_multiple_credentails(self):
+        '''
+
+        Test on saving multiple credentials
+
+        '''
+        self.new_credential.save_credential()
+        test_credential = Credential("Test","testAccount","testPass")
+        test_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list),2)
+
+
+    def test_delete_credential(self):
+        '''
+
+        Test if we can remove a credential
+
+        '''
+        self.new_credential.save_credential()
+        test_credential = Credential("Test","testAccount","testPass")
+        test_credential.save_credential()
+
+        self.new_credential.delete_credential()
+        self.assertEqual(len(Credential.credential_list),1)
+        
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
