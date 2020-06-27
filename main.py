@@ -69,11 +69,23 @@ def create_credential(uname,account,cpass):
     new_credential = Credential(uname,account,cpass)
     return new_credential
 
-def 
+#save credential
+def save_credential(credential):
+    '''
 
-    #save credential
+    Function to save credential
 
-    #delete credential
+    '''
+    credential.save_credential()
+
+#delete credential
+def del_credential(credential):
+    '''
+
+    Function to delete credential
+
+    '''
+    credential.delete_credential()
 
     #find credential
 
