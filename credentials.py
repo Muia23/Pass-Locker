@@ -13,6 +13,15 @@ class Credential:
         self.account = account
         self.credential_pass = credential_pass
 
+    def save_credential(self):
+        '''
+    
+        method to save credentials in the ist
+
+        '''
+        Credential.credential_list.append(self)
+
+    
 #account
 #account_username
 #account_password
