@@ -21,7 +21,13 @@ class Credential:
         '''
         Credential.credential_list.append(self)
 
-    
+    def delete_credential(self):
+        '''
+
+
+        
+        '''
+        Credential.credential_list.remove(self)
 #account
 #account_username
 #account_password
