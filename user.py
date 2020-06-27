@@ -1,3 +1,6 @@
+#users
+#verify and log in to credentials
+#new locker_user
 class User:
     """
 
@@ -5,8 +8,9 @@ class User:
     
     """
 
+    user_list = []
 
-    def __init__(self,username, password, account):
+    def __init__(self,username, password):
 
         """
 
@@ -18,3 +22,13 @@ class User:
             account : New account.
 
         """
+        self.username = username
+        self.password = password
+
+
+    def save_user(self):
+        '''
+        Method saves user object into user_list
+
+        '''
+        User.user_list.append(self)
