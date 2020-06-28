@@ -42,24 +42,34 @@ def check_existing_user(username):
     return User.user_exist(username)
 
 #check existing password
+def check_existing_password(password):
+    '''
 
+    Function that checks if a password exists
+
+    '''
+    return User.password_exist(password)
 
 #log in
 def signin():
     '''
 
-
+    Function to log in a user
 
     '''
+    global program_run
+
     print("Enter Username")
-    search_username = input()
+    username = input()
 
-    if check_existing_user(search_username):
+    if username == "wilfred":
+        
         print("Enter Password")
-        search_password = input()
+        password = input()
 
-        if search_password == "Muia":
-            print("logged in")                
+        if password =="muema":
+            print("logged in")
+            cred()                
 
         else:
             print("Invalid password")
@@ -67,7 +77,7 @@ def signin():
     else:
         print("User doesn't exist. Kindly Try again")
         print('\n')
-        signin()        
+        program_run = False        
     
 #create credential
 def create_credential(uname,account,cpass):
@@ -133,114 +143,132 @@ def main():
     print('\n')
     print("Welcome to Pass-Locker.")
     print('\n')
-    while program_run:        
-        print("Use these short codes to:") 
-        print("si - sign in, su - sign up, sc - save a credential, cc - create credential, dc - display credential, fc - find credential ex - exit Pass-Locker")
-        short_code = input().lower()
+    print("Use these short codes to:") 
+    print("si - sign in, su - sign up")
+    short_code1 = input().lower()
 
-        if short_code == 'si':
+    if short_code1 == 'si':
             signin()
-            
 
-        elif short_code == 'sc':
-            print('\n')
-            print("You are saving a credential")
-            print('\n')
+    elif short_code1 == 'su':
+            print("sign up function")
 
-            print ("Username....")
-            uname = input()
-            
+    else:
+        print('\n')
+        print("Error! Please use the short codes")
+        print('\n')
 
-            print ("Account....")
-            account = input()
+def cred():
+        while program_run:        
+            print("Use these short codes to:") 
+            print("so - sign out, sc - save a credential, cc - create credential, dc - display credential, fc - find credential ex - exit Pass-Locker")
+            short_code2 = input().lower()
 
-
-            print("Password....")
-            cpass = input()
-
-            save_credential(create_credential(uname, account, cpass))
-            print('\n')
-            print(f"New credential {uname} {account} created")
-            print('\n')
-            
-
-        elif short_code == 'cc':
-            print('\n')
-            print("You are siging up for a new credential")
-            print('\n')
-
-            print ("Enter your names....")
-            name = input()
-
-            print ("Enter your email address....")
-            email = input()
-            
-            print ("Enter your phone number....")
-            phone = input()
-
-            print ("Enter a desired Username....")
-            print ("Remember should be unique")
-            uname = input()
-            
-
-            print ("Enter the App you want to sign up....")
-            account = input()
-
-            print("Enter a password....")
-            print("A password should have: letters [A-Z][a-z], numbers[1-9], special characters[@,*,(,),&,%,_,-]")
-            cpass = input()
-
-            save_credential(create_credential(uname, account, cpass))
-            print('\n')
-            print(f"New credential {uname} {account} created")
-            print('\n')
-            
-
-
-        elif short_code == 'dc':
-
-            if display_credentials():
+            if short_code2 == 'sc':
                 print('\n')
-                print("Here is a list of all your credentials")
+                print("You are saving a credential")
                 print('\n')
 
-                for credential in display_credentials():                
-                    print(f"{credential.login_name} {credential.account}")
+                print ("Username....")
+                uname = input()
+                
+
+                print ("Account....")
+                account = input()
+
+
+                print("Password....")
+                cpass = input()
+
+                save_credential(create_credential(uname, account, cpass))
+                print('\n')
+                print(f"New credential {uname} {account} created")
+                print('\n')
+                
+
+            elif short_code2 == 'cc':
+                print('\n')
+                print("You are siging up for a new credential")
+                print('\n')
+
+                print ("Enter your names....")
+                name = input()
+
+                print ("Enter your email address....")
+                email = input()
+                
+                print ("Enter your phone number....")
+                phone = input()
+
+                print ("Enter a desired Username....")
+                print ("Remember should be unique")
+                uname = input()
+                
+
+                print ("Enter the App you want to sign up....")
+                account = input()
+
+                print("Enter a password....")
+                print("A password should have: letters [A-Z][a-z], numbers[1-9], special characters[@,*,(,),&,%,_,-]")
+                cpass = input()
+
+                save_credential(create_credential(uname, account, cpass))
+                print('\n')
+                print(f"New credential {uname} {account} created")
+                print('\n')
+                
+
+
+            elif short_code2 == 'dc':
+
+                if display_credentials():
+                    print('\n')
+                    print("Here is a list of all your credentials")
+                    print('\n')
+
+                    for credential in display_credentials():                
+                        print(f"{credential.login_name} {credential.account}")
+                        print('\n')
+                        
+                else:
+                    print('\n')
+                    print("You haven't saved any credentials yet")
                     print('\n')
                     
-            else:
+
+            elif short_code2 == 'fc':
                 print('\n')
-                print("You haven't saved any credentials yet")
-                print('\n')
+                print("Enter the account you want to search for")
+
+                search_account = input()
+                if check_existing_credential(search_account):
+                    search_credential = find_credential(search_account)
+                    print('\n')
+                    print(f"{search_credential.login_name} {search_credential.account}")
+                    print('\n')
+
+                else:
+                    print('\n')
+                    print("That credential does not exist")
+                    print('\n')
+                    
                 
+            elif short_code2 == "ex":
+                    print('\n')
+                    print("Bye ......")
+                    print('\n')
+                    exit_program()
 
-        elif short_code == 'fc':
-            print('\n')
-            print("Enter the account you want to search for")
-
-            search_account = input()
-            if check_existing_credential(search_account):
-                search_credential = find_credential(search_account)
-                print('\n')
-                print(f"{search_credential.login_name} {search_credential.account}")
-                print('\n')
+            elif short_code2 == "so":
+                    print('\n')
+                    print("Signing Out ......")
+                    print('\n')
+                    main()
 
             else:
-                print('\n')
-                print("That credential does not exist")
-                print('\n')
-                
-            
-        elif short_code == "ex":
-                print('\n')
-                print("Bye ......")
-                print('\n')
-                exit_program()
-
-        else:
-                print('\n')
-                print("Error! Please use the short codes")
-                print('\n')
+                    print('\n')
+                    print("Error! Please use the short codes")
+                    print('\n')
 
 
 
