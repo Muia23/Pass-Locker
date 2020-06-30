@@ -7,7 +7,7 @@ class User:
     Class generates new instance of users
     
     """
-
+    #create user list
     user_list = []
 
     def __init__(self,username, password):
@@ -24,7 +24,6 @@ class User:
         """
         self.username = username
         self.password = password
-
 
     def save_user(self):
         '''
@@ -46,6 +45,23 @@ class User:
         '''
         for user in cls.user_list:
             if user.username == username:
-                    return True
-        
+                return True
+            
+        return False
+
+    @classmethod
+    def password_exist(cls,password):
+        '''
+
+        Method checks if user password exists from the user list.
+        Args:
+            password: Password to search if they already have accounts
+        Returns:
+            Boolean: True or false depending if the username account exists
+
+        '''
+        for user in cls.user_list:
+            if user.password == password:
+                return True
+     
         return False
