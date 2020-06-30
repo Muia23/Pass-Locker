@@ -16,8 +16,7 @@ class TestCredentials(unittest.TestCase):
         
         Method clears up after each test we run
 
-        '''
-        Credential.credential_list = []
+        '''   
     
     def test_init(self):
         '''
