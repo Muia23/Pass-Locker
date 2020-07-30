@@ -30,7 +30,7 @@ def signup_user(username, password):
 
 
 #save user
-def save_user(user):
+def save_users(user):
     '''
 
     Function to save user
@@ -107,7 +107,7 @@ def signup():
     password = input()
     print('\n')
 
-    save_user(signup_user(username, password))
+    save_users(signup_user(username, password))
     print('\n')
     print("Account created")
     print('\n')

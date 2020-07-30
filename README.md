@@ -14,11 +14,14 @@ This is Python application for users to store their apps credentials. Which are 
     
     For linux/ubuntu users : Git
 
-## To Run
-The user needs to run the app in their terminal
-    
-    $ ./main.py
-    
+## Project setup instruction
+To get the application program: 
+
+1. Clone this repository. 
+2. Open terminal.
+3. Move to the pass-locker directory
+4. Run the application using
+        $ ./main.py    
 
 ## License info
 MIT License
